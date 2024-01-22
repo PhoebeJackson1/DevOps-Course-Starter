@@ -17,4 +17,10 @@
       </ul>
     </div>
   </div>
+
+  <form action="/add-item" method="post">
+    <label for="todo_title">Add another task:</label>
+    <input name="todo_title" required id="todo_title"/>
+    <button type="submit">Submit</button>
+  </form>
 {% endblock %}
