@@ -1,0 +1,45 @@
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }
+
+div.to-do{
+  border-color: blue;
+  background-color: skyblue;
+}
+
+div.doing{
+  border-color:rebeccapurple;
+  background-color:violet;
+}
+
+div.done{
+  border-color:green;
+  background-color:lightgreen;
+}
+
+div.card {
+  border-width: 3px;
+  border-style: solid;
+  padding: 3px;
+  margin: 3px;
+  width: 400px;
+  min-height: 48px;
+}
+
+button.change-status{
+  height: 30px;
+  margin: 3px;
+  width: 188px
+}
+
+p.card-text {
+  display: inline-block;
+  margin: 3px;
+  max-width: 400px;
+}
+
+div.button-container {
+  display: flex;
+}
