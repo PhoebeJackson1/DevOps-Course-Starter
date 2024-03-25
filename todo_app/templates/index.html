@@ -7,20 +7,52 @@
     <p class="lead">Just another to-do app.</p>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Items</h2>
-      <ul class="list-group mb-4">
-        {% for todo_item in todo_items %}
-          <li>{{ todo_item.title }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-
   <form action="/add-item" method="post">
     <label for="todo_title">Add another task:</label>
     <input name="todo_title" required id="todo_title"/>
     <button type="submit">Submit</button>
   </form>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Tasks</h2>
+      <ul class="no-bullets">
+        {% for todo_item in todo_items %}
+          <li>
+            <div>
+              <form action="/" method="post">
+                <input type="hidden" name="id" value="{{ todo_item.id }}" />
+                {% if todo_item.status.value == "To do" %}
+                <div class="card to-do">
+                  <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>
+                  <div class="button-container">
+                    <button type="submit" class="change-status" formaction="/item-doing">Doing</button>
+                    <button type="submit" class="change-status" formaction="/item-done">Done</button>
+                  </div>
+                </div>
+                {% elif todo_item.status.value == "Doing" %}
+                <div class="card doing">
+                  <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>   
+                  <div class="button-container">
+                    <button type="submit" class="change-status" formaction="/item-to-do">To do</button>
+                    <button type="submit" class="change-status" formaction="/item-done">Done</button>
+                  </div>
+                </div>
+                {% elif todo_item.status.value == "Done" %}
+                <div class="card done">
+                  <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>
+                  <div class="button-container">
+                    <button type="submit" class="change-status" formaction="/item-to-do">To do</button>
+                    <button type="submit" class="change-status" formaction="/item-doing">Doing</button>
+                  </div>
+                </div>
+                {% endif %}
+              </form>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
 {% endblock %}
