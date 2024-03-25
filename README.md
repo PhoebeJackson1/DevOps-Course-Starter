@@ -59,3 +59,18 @@ Press CTRL+C to quit
  * Debugger PIN: 113-666-066
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Running the tests for the App
+
+There are some tests for the app that are found in `todo_app/tests`. They can be run using the command:
+```bash 
+$ poetry run pytest
+```
+To run only tests in a particular test file use:
+```bash 
+$ poetry run pytest <relative file path>
+```
+Or for a single test use:
+```bash 
+$ poetry run pytest <relative file path>::<test name>
+```
