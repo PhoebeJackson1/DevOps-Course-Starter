@@ -12,7 +12,6 @@ def create_app():
         items = get_items_from_trello()
         item_view_model = ViewModel(items)
         return render_template('index.html', view_model=item_view_model)
-        # return render_template('index.html', todo_items=todo_items) TODO
 
     @app.route('/add-item', methods=['POST'])
     def add_item():
