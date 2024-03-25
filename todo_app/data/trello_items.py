@@ -3,10 +3,6 @@ import os
 from todo_app.data.item import Item
 from todo_app.data.status import Status, get_list_id
 
-board_id = os.getenv("TRELLO_BOARD_ID")
-trello_api_key = os.getenv("TRELLO_API_KEY")
-trello_token = os.getenv("TRELLO_API_TOKEN")
-
 def get_items_from_trello():
     """
     Fetches all saved items from TRELLO list.
@@ -15,10 +11,10 @@ def get_items_from_trello():
         list: The list of saved items.
     """
     
-    url = f'https://api.trello.com/1/boards/{board_id}/cards'
+    url = f'https://api.trello.com/1/boards/{os.getenv("TRELLO_BOARD_ID")}/cards'
     query = {
-        'key' : trello_api_key,
-        'token' : trello_token,
+        'key' : os.getenv("TRELLO_API_KEY"),
+        'token' : os.getenv("TRELLO_API_TOKEN"),
     }
     response = requests.request("GET", url, params=query)
     return [ Item.from_trello_card(card) for card in response.json()]
@@ -33,8 +29,8 @@ def add_item_to_trello(name):
 
     url = "https://api.trello.com/1/cards"
     query = {
-        'key': trello_api_key,
-        'token': trello_token,
+        'key': os.getenv("TRELLO_API_KEY"),
+        'token': os.getenv("TRELLO_API_TOKEN"),
         'name':name,
         'idList': get_list_id(Status.TO_DO),
     }
@@ -57,8 +53,8 @@ def change_status_of_item_on_trello(id, status: Status):
 
     url = f'https://api.trello.com/1/cards/{id}'
     query = {
-        'key': trello_api_key,
-        'token': trello_token,
+        'key': os.getenv("TRELLO_API_KEY"),
+        'token': os.getenv("TRELLO_API_TOKEN"),
         'idList': get_list_id(status),
     }
     requests.request(
