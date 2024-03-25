@@ -1,15 +1,17 @@
 from flask import Flask, render_template, redirect, request
 from todo_app.data.trello_items import get_items_from_trello, add_item_to_trello, change_status_of_item_on_trello, Status
 from todo_app.flask_config import Config
-import os
+from todo_app.data.view_model import ViewModel 
 
 app = Flask(__name__)
 app.config.from_object(Config())
 
 @app.route('/')
 def index():
-    todo_items = get_items_from_trello()
-    return render_template('index.html', todo_items=todo_items)
+    items = get_items_from_trello()
+    item_view_model = ViewModel(items)
+    return render_template('index.html', view_model=item_view_model)
+    # return render_template('index.html', todo_items=todo_items) TODO
 
 @app.route('/add-item', methods=['POST'])
 def add_item():

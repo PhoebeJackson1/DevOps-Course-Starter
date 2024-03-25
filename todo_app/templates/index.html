@@ -17,7 +17,7 @@
     <div class="col-md-12">
       <h2>Tasks</h2>
       <ul class="no-bullets">
-        {% for todo_item in todo_items %}
+        {% for todo_item in view_model.items %}
           <li>
             <div>
               <form action="/" method="post">
