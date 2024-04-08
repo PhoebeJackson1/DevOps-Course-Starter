@@ -15,14 +15,13 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Tasks</h2>
+      <h2>To do tasks</h2>
       <ul class="no-bullets">
-        {% for todo_item in todo_items %}
+        {% for todo_item in view_model.to_do_items %}
           <li>
             <div>
               <form action="/" method="post">
                 <input type="hidden" name="id" value="{{ todo_item.id }}" />
-                {% if todo_item.status.value == "To do" %}
                 <div class="card to-do">
                   <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>
                   <div class="button-container">
@@ -30,7 +29,20 @@
                     <button type="submit" class="change-status" formaction="/item-done">Done</button>
                   </div>
                 </div>
-                {% elif todo_item.status.value == "Doing" %}
+              </form>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-12">
+      <h2>Doing tasks</h2>
+      <ul class="no-bullets">
+        {% for todo_item in view_model.doing_items %}
+          <li>
+            <div>
+              <form action="/" method="post">
+                <input type="hidden" name="id" value="{{ todo_item.id }}" />
                 <div class="card doing">
                   <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>   
                   <div class="button-container">
@@ -38,7 +50,20 @@
                     <button type="submit" class="change-status" formaction="/item-done">Done</button>
                   </div>
                 </div>
-                {% elif todo_item.status.value == "Done" %}
+              </form>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-12">
+      <h2>Done tasks</h2>
+      <ul class="no-bullets">
+        {% for todo_item in view_model.done_items %}
+          <li>
+            <div>
+              <form action="/" method="post">
+                <input type="hidden" name="id" value="{{ todo_item.id }}" />
                 <div class="card done">
                   <p class="card-text"><strong>{{ todo_item.status.value }}:</strong> {{ todo_item.name }}</p>
                   <div class="button-container">
@@ -46,7 +71,6 @@
                     <button type="submit" class="change-status" formaction="/item-doing">Doing</button>
                   </div>
                 </div>
-                {% endif %}
               </form>
             </div>
           </li>
