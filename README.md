@@ -41,6 +41,7 @@ The `.env` file is used by flask to set environment variables when running `flas
 Set up a Trello Account (https://trello.com/signup) and create an API Key and an API Token for Trello and then put the values in your .env file and the relevant trello board ids for your set up.
 
 ## Running the App
+### Locally
 
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
 ```bash
@@ -59,6 +60,18 @@ Press CTRL+C to quit
  * Debugger PIN: 113-666-066
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+### Remotely
+
+There is an ansible playbook found in `ansible/` to run the app from remote hosts. To use it run:
+```bash
+ ansible-playbook ansible-playbook.yml -i ansible-inventory.ini
+```
+(from `/ansible` directory on a control node).
+
+If adding a new remote host add it's public IP to `ansible/ansible-inventory.ini`.
+ 
+Now visit `<host-IP-address>:5000/` in your web browser to view the app.
 
 ## Running the tests for the App
 
