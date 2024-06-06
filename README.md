@@ -61,7 +61,7 @@ Press CTRL+C to quit
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-### Remotely
+### Remotely using Ansible
 
 There is an ansible playbook found in `ansible/` to run the app from remote hosts. To use it run:
 ```bash
@@ -72,6 +72,22 @@ There is an ansible playbook found in `ansible/` to run the app from remote host
 If adding a new remote host add it's public IP to `ansible/ansible-inventory.ini`.
  
 Now visit `<host-IP-address>:5000/` in your web browser to view the app.
+
+### Using Docker
+
+Build and run a development container (with hot reloading) using:
+```bash
+docker build --target development --tag todo-app:dev .
+docker run --env-file .env -p 5100:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/code/todo_app" todo-app:dev
+```
+The app will then be accessible at [`http://localhost:5100/`](http://localhost:5100/).
+
+Or for the production version use: 
+```bash
+docker build --target production --tag todo-app:prod .
+docker run --env-file .env -p 5100:5000 todo-app:prod
+```
+(NB: If your .env file contains a value for FLASK_DEBUG that needs to be set to false for production)
 
 ## Running the tests for the App
 
