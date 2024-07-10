@@ -92,7 +92,7 @@ docker run --env-file .env -p 5100:5000 todo-app:prod
 To run the tests in Docker use: 
 ```bash
 docker build --target test --tag todo-app:test .
-docker run --env-file .env.test -p 5100:5000 todo-app:test
+docker run --env-file .env.test todo-app:test
 ```
 
 ## Running the tests for the App
