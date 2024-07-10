@@ -89,13 +89,9 @@ docker run --env-file .env -p 5100:5000 todo-app:prod
 ```
 (NB: If your .env file contains a value for FLASK_DEBUG that needs to be set to false for production)
 
-To run the tests in Docker use: 
-```bash
-docker build --target test --tag todo-app:test .
-docker run --env-file .env.test todo-app:test
-```
-
 ## Running the tests for the App
+
+### Locally
 
 There are some tests for the app that are found in `todo_app/tests`. They can be run using the command:
 ```bash 
@@ -109,3 +105,17 @@ Or for a single test use:
 ```bash 
 $ poetry run pytest <relative file path>::<test name>
 ```
+
+### Using Docker
+
+To run the tests in Docker use: 
+```bash
+docker build --target test --tag todo-app:test .
+docker run --env-file .env.test todo-app:test
+```
+
+### CI
+
+The tests are also run by GitHub Actions on push and pull request events.
+
+
