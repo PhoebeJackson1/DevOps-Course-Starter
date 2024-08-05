@@ -89,6 +89,19 @@ docker run --env-file .env -p 5100:5000 todo-app:prod
 ```
 (NB: If your .env file contains a value for FLASK_DEBUG that needs to be set to false for production)
 
+### Hosting on Azure
+
+The todo-app is available at https://phojac-todo-app.azurewebsites.net/
+
+Push the latest docker image to the [DockerHub repository](https://hub.docker.com/repository/docker/phoebejackson/todo-app/general) using:
+
+```bash
+docker build --target production --tag phoebejackson todo-app:prod .
+docker push  phoebejackson/todo-app:prod
+```
+
+Send a POST request to the webhook URL (which can be found in Deployment Centre on Azure Portal) to prompt Azure to pull the updated image from DockerHub.
+
 ## Running the tests for the App
 
 ### Locally
