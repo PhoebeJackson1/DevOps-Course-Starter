@@ -23,7 +23,7 @@ jobs:
     name: Job two
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/head/exercise-9'
-     # && github.event_name == 'push'
+    if: github.event_name == 'push'
+    # github.ref == 'refs/head/exercise-9'
     steps:
       - run: echo Publishing!
