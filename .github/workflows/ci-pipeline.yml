@@ -24,6 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'push'
-    # github.ref == 'refs/head/exercise-9'
+    # && github.head_ref == 'exercise-9'
     steps:
-      - run: echo Publishing!
+      - run: echo "head ref is ${GITHUB_HEAD_REF}, ref is ${GITHUB_REF}"
