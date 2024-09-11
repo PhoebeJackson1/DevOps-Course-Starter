@@ -19,8 +19,8 @@ jobs:
       run: docker build --target test --tag todo-app:test .
     - name: Run tests
       run: docker run --env-file .env.test todo-app:test
-  job-two: 
-    name: Job two
+  build-and-push: 
+    name: Build and push
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/exercise-9'
@@ -31,8 +31,7 @@ jobs:
         with:
           username: phoebejackson
           password: ${{ secrets.DOCKERHUB_PAT }}
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: phoebejackson/todo-app:latest
+      - name: Build
+        run: docker build --target production --tag phoebejackson/todo-app:prod .
+      - name: Push
+        run: docker push phoebejackson/todo-app:prod
