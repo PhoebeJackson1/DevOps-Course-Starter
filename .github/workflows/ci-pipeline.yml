@@ -36,3 +36,5 @@ jobs:
         run: docker build --target production --tag phoebejackson/todo-app:prod .
       - name: Push
         run: docker push phoebejackson/todo-app:prod
+      - name: Release to Azure
+        run: curl -dH -X POST '${{ secrets.AZURE_WEBHOOK }}'
