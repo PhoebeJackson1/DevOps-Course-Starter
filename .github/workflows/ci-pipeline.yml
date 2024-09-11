@@ -31,6 +31,7 @@ jobs:
         with:
           username: phoebejackson
           password: ${{ secrets.DOCKERHUB_PAT }}
+      - uses: actions/checkout@v4
       - name: Build
         run: docker build --target production --tag phoebejackson/todo-app:prod .
       - name: Push
