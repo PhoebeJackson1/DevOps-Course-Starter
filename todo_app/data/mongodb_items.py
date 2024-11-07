@@ -24,7 +24,7 @@ def get_items_from_mongodb():
     collection = get_items_collection()
     items = collection.find()
 
-    return [ Item.from_database_item(item) for item in items.to_list() ]
+    return [ Item.from_database_item(item) for item in list(items) ]
 
 def add_item_to_mongodb(name):
     """
