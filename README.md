@@ -38,6 +38,17 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie. You will also want to create a MongoDB database or use an existing one by getting the connection string.
 
+## Security
+
+### Encryption
+
+Our data is stored with Azure CosmosDB and is thus encrypted at rest as well as in transit to/from the database. 
+We also enforce use of HTTPS for encryption in transit for the rest of our app.
+
+### Dependency checker
+
+We use [safety](https://github.com/pyupio/safety) to scan for dependencies, this is run in our CI pipeline.
+
 ## Running the App
 ### Locally
 
