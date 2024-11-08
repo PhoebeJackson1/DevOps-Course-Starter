@@ -7,7 +7,6 @@ WORKDIR /code
 COPY poetry.lock pyproject.toml /code/
 COPY ./todo_app /code/todo_app
 RUN poetry install
-RUN poetry run safety check
 EXPOSE 5000
 
 FROM base as production
@@ -20,3 +19,6 @@ ENTRYPOINT poetry run flask run --host=0.0.0.0
 
 FROM base as test
 ENTRYPOINT poetry run pytest
+
+FROM base as dependency-check
+ENTRYPOINT poetry run safety check
