@@ -1,5 +1,4 @@
 from todo_app.data.status import Status
-from todo_app.data.item import Item
 
 class ViewModel:
     def __init__(self, items):
