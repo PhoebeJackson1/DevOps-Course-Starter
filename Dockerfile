@@ -19,6 +19,3 @@ ENTRYPOINT poetry run flask run --host=0.0.0.0
 
 FROM base as test
 ENTRYPOINT poetry run pytest
-
-FROM base as dependency-check
-ENTRYPOINT poetry run safety check
