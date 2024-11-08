@@ -7,6 +7,7 @@ WORKDIR /code
 COPY poetry.lock pyproject.toml /code/
 COPY ./todo_app /code/todo_app
 RUN poetry install
+RUN poetry run safety check
 EXPOSE 5000
 
 FROM base as production
