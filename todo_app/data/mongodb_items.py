@@ -15,7 +15,7 @@ def get_items_collection():
 
 def get_items_from_mongodb():
     """
-    Fetches all saved items from TRELLO list.
+    Fetches all saved items from MongoDB.
 
     Returns:
         list: The list of saved items.
@@ -28,7 +28,7 @@ def get_items_from_mongodb():
 
 def add_item_to_mongodb(name):
     """
-    Adds a new item with the specified title to TRELLO "To do" list.
+    Adds a new item with the specified title to MongoDB with status 'To do'.
 
     Args:
         name: The name of the item.
